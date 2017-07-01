@@ -1,4 +1,1 @@
-  File "print_flight_schedule.py", line 4
-    with open(fn,'wt') as f:
-       ^
-IndentationError: expected an indented block
+ 
