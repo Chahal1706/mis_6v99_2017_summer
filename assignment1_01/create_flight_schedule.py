@@ -561,7 +561,27 @@ with open("E:\\assignment\\create_flight_schedule.csv", 'w') as f:
     #print("rep after optim is : ",rep[0:70])
 
 
-
+    def time_military(time):
+    print(int(time))
+    hours = str(int(int(time)/60))
+    minutes = str(int(time)%60)
+    return hours.zfill(2)+minutes.zfill(2)
+    with open("flight_schedule.csv1", 'wt') as f1:
+    csv_header = 'tail_number,origin,destination,departure_time,arrival_time'
+    print(csv_header, file= f1)
+    path = r'E:\assignment\flight_schedule.csv'
+    with open(path, 'r') as f:
+        for line in f.readlines():
+            #print(line)
+            arr =  line.strip().split(',')
+            temp = []
+            for item in arr:
+                temp.append(item.strip())
+            #print(arr)
+            #print(arr1[3])
+            temp[3] = time_military(temp[3])
+            temp[4] = time_military(temp[4])
+            print(','.join(temp), file=f1)
 
 
     for i in range(0,190):
