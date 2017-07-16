@@ -1,1 +1,10 @@
-
+import numpy as np
+a=np.arange(15).reshape(3,5)
+f=open(" demo_numpy.txt","w" )
+f.write(str(a) + "\n")
+f.write(str(a.shape) +"\n")
+f.write(str(a.size) + "\n")
+f.write(str(a.itemsize) + "\n")
+f.write(str(a.ndim)+ "\n")
+f.write(str(a.dtype) +"\n")
+f.close()
