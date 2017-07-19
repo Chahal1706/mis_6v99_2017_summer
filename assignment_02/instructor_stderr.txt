@@ -1,10 +1,2 @@
-Traceback (most recent call last):
-  File "analyze_medicare_data.py", line 51, in <module>
-    wb = openpyxl.load_workbook("hospital_ranking_focus_states.xlsx")
-  File "/home/ancuser/anaconda3/lib/python3.6/site-packages/openpyxl/reader/excel.py", line 164, in load_workbook
-    archive = _validate_archive(filename)
-  File "/home/ancuser/anaconda3/lib/python3.6/site-packages/openpyxl/reader/excel.py", line 118, in _validate_archive
-    archive = ZipFile(filename, 'r', ZIP_DEFLATED)
-  File "/home/ancuser/anaconda3/lib/python3.6/zipfile.py", line 1082, in __init__
-    self.fp = io.open(file, filemode)
-FileNotFoundError: [Errno 2] No such file or directory: 'hospital_ranking_focus_states.xlsx'
+/home/ancuser/anaconda3/lib/python3.6/site-packages/pandas/core/generic.py:1345: UserWarning: The spaces in these column names will not be changed. In pandas versions < 0.14, spaces were converted to underscores.
+  chunksize=chunksize, dtype=dtype)
