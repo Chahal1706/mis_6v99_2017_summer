@@ -1,2 +1,10 @@
 /home/ancuser/anaconda3/lib/python3.6/site-packages/pandas/core/generic.py:1345: UserWarning: The spaces in these column names will not be changed. In pandas versions < 0.14, spaces were converted to underscores.
   chunksize=chunksize, dtype=dtype)
+Traceback (most recent call last):
+  File "analyze_medicare_data.py", line 153, in <module>
+    xls_file = pd.ExcelFile('hospital_ranking_focus_state.xlsx')
+  File "/home/ancuser/anaconda3/lib/python3.6/site-packages/pandas/io/excel.py", line 257, in __init__
+    self.book = xlrd.open_workbook(io)
+  File "/home/ancuser/anaconda3/lib/python3.6/site-packages/xlrd/__init__.py", line 395, in open_workbook
+    with open(filename, "rb") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'hospital_ranking_focus_state.xlsx'
