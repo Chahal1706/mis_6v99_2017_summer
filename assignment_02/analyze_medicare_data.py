@@ -8,6 +8,8 @@ import sqlite3
 import glob
 import getpass
 import pandas as pd
+from openpyxl import Workbook
+import numpy as np
 
 '''This line is initializing the place holder for the url path''' 
 url="https://data.medicare.gov/views/bg9k-emty/files/0a9879e0-3312-4719-a1db-39fd114890f1?content_type=application%2Fzip%3B%20charset%3Dbinary&filename=Hospital_Revised_Flatfiles.zip"
@@ -21,8 +23,8 @@ r = requests.get(url)
 '''Now, we are making a staging directory to store the contensts of the zip folder after unzipping it'''
 staging_dir_name = "staging"
 
-
-os.mkdir(staging_dir_name) 
+if not os.path.exists(staging_dir_name):
+    os.mkdir(staging_dir_name) 
 
 '''Represents a path relative to the current directory on drive'''
 
@@ -108,7 +110,7 @@ def create_tables():
             tablename = os.path.splitext(os.path.basename(file_name))[0].lower().replace(" ","_").replace("-","_").replace("%", "pct").replace("/","_")
             if(not tablename[0].isalpha()):
                 tablename = "t_" + tablename
-            df.to_sql(tablename,con=conn,if_exists='fail',dtype = {col:'text' for col in df}, index=False)
+            df.to_sql(tablename,con=conn,if_exists='replace',dtype = {col:'text' for col in df}, index=False)
            
     ## Raises exception on unable to establish connection
     except ConnectionError:
@@ -122,6 +124,9 @@ def create_tables():
     return
 
 create_tables() 
+
+
+
 
 '''
 the below block of code is performing the following functions:
@@ -138,6 +143,8 @@ list_of_rows_from_table=list()
 for row in rows:
     list_of_rows_from_table.append(dict(row))
 
+conn.close()
+
 
     
   
@@ -150,7 +157,15 @@ the below piece of code performs the following function:
 '''  
 
 df_rows_table = pd.DataFrame(list_of_rows_from_table)
-xls_file = pd.ExcelFile('hospital_ranking_focus_state.xlsx')
+
+k_url = "http://kevincrook.com/utd/hospital_ranking_focus_states.xlsx"
+r = requests.get(k_url)
+xf = open("hospital_ranking_focus_states.xlsx","wb")
+xf.write(r.content)
+xf.close()
+
+
+xls_file = pd.ExcelFile('hospital_ranking_focus_states.xlsx')
 df_hospital_national_ranking=xls_file.parse('Hospital National Ranking')
 df_focus_states=xls_file.parse('Focus States')
 #print(df_focus_states[:5])
@@ -283,3 +298,6 @@ for key,value in dict_of_state_abbr_sorted.items():
 we save the file.
 '''
 writer.save()
+
+
+conn.close()
