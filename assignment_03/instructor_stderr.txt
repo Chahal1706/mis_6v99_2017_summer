@@ -1,2 +1,4 @@
-
-This file will contain the contents of stderr (if any) after both preliminary and final grading runs
+Traceback (most recent call last):
+  File "market_basket_analytics.py", line 5, in <module>
+    from mlxtend.frequent_patterns import apriori
+ModuleNotFoundError: No module named 'mlxtend'
