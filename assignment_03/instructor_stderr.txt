@@ -1,4 +1,4 @@
 Traceback (most recent call last):
-  File "market_basket_analytics.py", line 5, in <module>
-    from mlxtend.frequent_patterns import apriori
-ModuleNotFoundError: No module named 'mlxtend'
+  File "market_basket_analytics.py", line 24, in <module>
+    training_dataframe=pd.DataFrame([line.strip().split(',') for line in open('C:\\Users\\chaha\\Downloads\\ml_assignment\\market_basket_training.txt', 'r')]).fillna('NULL')
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\chaha\\Downloads\\ml_assignment\\market_basket_training.txt'
